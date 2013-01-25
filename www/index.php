@@ -1,40 +1,34 @@
 <?php
+/**
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @version  3.2.13
+ * @author   Taylor Otwell <taylorotwell@gmail.com>
+ * @link     http://laravel.com
+ */
 
-require_once __DIR__.'/../vendor/autoload.php';
+// --------------------------------------------------------------
+// Tick... Tock... Tick... Tock...
+// --------------------------------------------------------------
+define('LARAVEL_START', microtime(true));
 
-$app = new Silex\Application();
+// --------------------------------------------------------------
+// Indicate that the request is from the web.
+// --------------------------------------------------------------
+$web = true;
 
-$app['debug'] = true;
+// --------------------------------------------------------------
+// Set the core Laravel path constants.
+// --------------------------------------------------------------
+require '../paths.php';
 
+// --------------------------------------------------------------
+// Unset the temporary web variable.
+// --------------------------------------------------------------
+unset($web);
 
-$app->get('/{uri}', function ($uri) use ($app) {
-    
-    $uri_mix  = explode('?', $uri);
-    $uri_path = $uri_mix[0];
-    $uri_mix  = explode('/', $uri_path);
-    
-    $controller_name = (isset($uri_mix[0]) AND !empty($uri_mix[0])) ? $uri_mix[0] : 'index';
-    $controller_name = "App\\Controller\\" . ucfirst( strtolower($controller_name) );
-    $controller      = new $controller_name;
-    
-    $action_name = (isset($uri_mix[1]) AND !empty($uri_mix[1])) ? $uri_mix[1] : 'index';
-    $action_name = 'action_' . strtolower($action_name);
-    
-    $output = $controller->$action_name;
-    
-    var_dump($output);
-    
-    return '<hr/>';    
-    
-})->assert('uri', '.+')->value('uri', 'index/');
-
-/*
-'App\Controller\Photo::openAction'
-
-$app->get('/{uri}', function ($uri) use ($app) {
-    return $uri;
-})->assert('uri', '.+')->value('uri', 'index/');
-
-*/
-
-$app->run();
+// --------------------------------------------------------------
+// Launch Laravel.
+// --------------------------------------------------------------
+require path('sys').'laravel.php';
