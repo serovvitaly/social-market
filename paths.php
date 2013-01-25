@@ -30,7 +30,16 @@ $environments = array(
 // --------------------------------------------------------------
 // The path to the application directory.
 // --------------------------------------------------------------
-$paths['app'] = 'application';
+
+$http_host_mix = explode('.', $_SERVER['HTTP_HOST']);
+
+$allow_apps = array('provider');
+
+$current_app = strtolower($http_host_mix[0]);
+
+$current_app = (isset($current_app) AND in_array($current_app, $allow_apps)) ? $current_app : 'public';
+
+$paths['app'] = 'app_' . $current_app;
 
 // --------------------------------------------------------------
 // The path to the Laravel directory.
