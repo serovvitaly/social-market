@@ -32,18 +32,34 @@
 |
 */
 
+/**
+* Блокируем доступ к роутам основного приватного контроллера
+*/
 Route::get('private/(:all?)', function()
 {
     return Response::error('404');
 });
 
 
+/**
+* Фильтруем незалогиненых мерчантов
+*/
+Route::filter('filter', function(){
+    if ( !Auth::check() ) {
+        return Redirect::to('/auth'); 
+    }
+});
+
+Route::get('merchant/(:all?)', array('before' => 'filter', function(){
+    //
+}));
+
+
+/**
+* Универсальный роутер
+*/
 Route::controller( Controller::detect() );
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
 
 /*
 |--------------------------------------------------------------------------

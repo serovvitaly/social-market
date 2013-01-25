@@ -1,0 +1,125 @@
+{% extends "merchant/_layout.twig" %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block topmenu %}{% endblock %}
+
+{% block content %}
+
+<div class="auth-form">
+
+  <table><tr>
+    <td>
+      <form id="merchant-authorization" class="bs-docs-example form-horizontal" action="/auth/login" method="POST">
+        <div class="control-group">
+          <div class="controls">
+             <h3>Авторизация</h3>
+          </div>
+        </div>        
+        <div class="control-group">
+          <label class="control-label" for="logEmail">Email</label>
+          <div class="controls">
+            <input type="text" id="logEmail" name="logEmail" placeholder="Email">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="logPassword">Пароль</label>
+          <div class="controls">
+            <input type="password" id="logPassword" name="logPassword" placeholder="Пароль">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox" name="remember"> Запомнить меня
+            </label>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-success" data-loading-text="Авторизация в процессе...">Авторизация</button>
+          </div>
+        </div>
+      </form>
+    </td>
+    <td>
+      <form id="merchant-registration" class="bs-docs-example form-horizontal" action="/auth/registration" method="POST">
+        <div class="control-group">
+          <div class="controls">
+             <h3>Регистрация</h3>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="regEmail">Email</label>
+          <div class="controls">
+            <input type="text" id="regEmail" name="regEmail" placeholder="Email">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="regPassword">Пароль</label>
+          <div class="controls">
+            <input type="password" id="regPassword" name="regPassword" placeholder="Пароль">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="regAgainPassword">Еще пароль</label>
+          <div class="controls">
+            <input type="password" id="regAgainPassword" name="regAgainPassword" placeholder="Введите пароль еще раз" title="Введите пароль еще раз">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary" data-loading-text="Регистрация в процессе...">Регистрация</button>
+          </div>
+        </div>
+      </form>
+    </td>
+  </tr></table>
+
+</div>
+
+
+<script>
+$(document).ready(function(){
+    
+    $('.auth-form *').tooltip();
+    
+    $('#merchant-authorization, #merchant-registration').ajaxForm({
+        dataType:  'json',
+        beforeSubmit: function(formData, jqForm, options){
+            
+            var form_id = $(jqForm).attr('id');
+            var if_errors = true;
+            
+            $('#'+form_id+' button.btn').button('loading');
+            $('#'+form_id+' .control-group').removeClass('error');
+            
+            for (var i=0; i < formData.length; i++) {
+                if (!formData[i].value) { 
+                    $('#'+form_id+' input[name="'+formData[i].name+'"]').parents('.control-group').addClass('error'); 
+                    if_errors = false; 
+                }
+            }
+            
+            if (!if_errors) $('#'+form_id+' button.btn').button('reset'); 
+            
+            return if_errors;
+        },
+        success: function(data, p1, p2, jqForm){
+            var form_id = $(jqForm).attr('id');
+            
+            $('#'+form_id+' button.btn').button('reset');
+            
+            if (data.success === true && data.result == form_id+'-ok') {
+                window.location = '/merchant';
+            }
+            else {
+                //
+            }
+            
+        }
+    });
+});
+</script>
+
+{% endblock %}

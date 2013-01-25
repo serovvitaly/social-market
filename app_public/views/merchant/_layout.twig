@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  
+  <link rel="stylesheet" href="/bundles/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <script src="/bundles/jquery/jquery.min.js"></script>
+  <script src="/bundles/jquery/jquery.form.js"></script>
+  
+</head>
+<body>
+  {% block topmenu %}
+  {% include 'merchant/_topmenu.twig' %}
+  {% endblock %}
+
+  <div class="container" style="margin-top: 50px;">
+    {% include 'merchant/_top_submenu.twig' %}
+    {% block content %}{% endblock %}
+  </div> 
+  
+  <script src="/bundles/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
