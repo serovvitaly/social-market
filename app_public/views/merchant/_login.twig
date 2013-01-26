@@ -52,19 +52,22 @@
         <div class="control-group">
           <label class="control-label" for="regEmail">Email</label>
           <div class="controls">
-            <input type="text" id="regEmail" name="regEmail" placeholder="Email">
+            <input type="text" id="regEmail" name="email" placeholder="Email">
+            <span class="help-inline"></span>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="regPassword">Пароль</label>
           <div class="controls">
-            <input type="password" id="regPassword" name="regPassword" placeholder="Пароль">
+            <input type="password" id="regPassword" name="password" placeholder="Пароль">
+            <span class="help-inline"></span>
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="regAgainPassword">Еще пароль</label>
+          <label class="control-label" for="password_conf">Еще пароль</label>
           <div class="controls">
-            <input type="password" id="regAgainPassword" name="regAgainPassword" placeholder="Введите пароль еще раз" title="Введите пароль еще раз">
+            <input type="password" id="password_conf" name="password_conf" placeholder="Введите пароль еще раз" title="Введите пароль еще раз">
+            <span class="help-inline"></span>
           </div>
         </div>
         <div class="control-group">
@@ -93,6 +96,8 @@ $(document).ready(function(){
             
             $('#'+form_id+' button.btn').button('loading');
             $('#'+form_id+' .control-group').removeClass('error');
+            $('#'+form_id+' .control-group').removeClass('warning');
+            $('#'+form_id+' .help-inline').html('');
             
             for (var i=0; i < formData.length; i++) {
                 if (!formData[i].value) { 
@@ -111,15 +116,50 @@ $(document).ready(function(){
             $('#'+form_id+' button.btn').button('reset');
             
             if (data.success === true && data.result == form_id+'-ok') {
-                window.location = '/merchant';
+                switch (form_id) {
+                    case 'merchant-authorization':
+                        window.location = '/merchant';
+                        break;
+                    case 'merchant-registration':
+                        $('#'+form_id).resetForm();
+                        $('#successfulRegistration').modal('show');
+                        break;
+                }
+                
             }
             else {
-                //
+                switch (data.result.format) {
+                    case ':message':
+                        //
+                        break;
+                }
+                
+                $.each(data.result.messages, function(index, item){
+                    $('#'+form_id+' input[name="'+index+'"]').parents('.control-group').addClass('warning');
+                    $('#'+form_id+' input[name="'+index+'"]').parents('.control-group').find('.help-inline').html(item);
+                })
+                
             }
             
+        },
+        error: function(){
+            $('form button.btn').button('reset');
         }
     });
 });
 </script>
+
+<div id="successfulRegistration" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Успешная регистрация</h3>
+  </div>
+  <div class="modal-body">
+    <p>Вы успешно зарегистрировались на сайте "Социальные сети". На Ваш email отправлено письмо с ссылкой для подтверждения регистрации. Пройдите по этой ссылке для завершения процесса регистрации.</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+  </div>
+</div>
 
 {% endblock %}

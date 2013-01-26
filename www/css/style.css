@@ -1,10 +1,28 @@
   
 .dropdown-menu {
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+         border-radius: 2px;
 }
 
+
+.modal {
+    border: 1px solid #999;
+    -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+          border-radius: 1px;
+}
+.modal-header {
+    padding: 7px 15px;
+}
+.modal-footer {
+    padding: 8px 15px 10px;
+}
+.modal-backdrop,
+.modal-backdrop.fade.in {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
 
 
 .auth-form td{
