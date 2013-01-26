@@ -4,6 +4,20 @@
 class Auth_Controller extends Base_Controller
 {
     
+    protected $_rules = array(
+        'email'          => 'required|email',
+        'password'       => 'required|min:6',
+        'password_conf'  => 'same:password',
+    );
+                        
+    protected $_messages = array(
+        'required' => 'Поле :attribute и :other не может быть пустым.',
+        'email'    => 'Email неверного формата',
+        'min'      => 'Должно быть не меньше :min символов',
+        'same'     => 'Поля "Пароль" и "Еще пароль" должны совпадать',
+        'unique'   => 'Такой :attribute уже зарегистрирован'
+    );
+    
     /**
     * Форма
     * 
@@ -25,22 +39,10 @@ class Auth_Controller extends Base_Controller
         sleep(2);
         
         $input = Input::all();
-         
-        $rules = array(
-            'email'          => 'required|email|unique:users',
-            'password'       => 'required|min:6',
-            'password_conf'  => 'same:password',
-        );
         
-        $messages = array(
-            'required' => 'Поле :attribute и :other не может быть пустым.',
-            'email'    => 'Email неверного формата',
-            'min'      => 'Должно быть не меньше :min символов',
-            'same'     => 'Поля "Пароль" и "Еще пароль" должны совпадать',
-            'unique'   => 'Такой :attribute уже зарегистрирован'
-        );
+        $this->_rules['email'] = $this->_rules['email'] . '|unique:users';
         
-        $validation = Validator::make($input, $rules, $messages);
+        $validation = Validator::make($input, $this->_rules, $this->_messages);
         
         $success = false;
         $result  = NULL; 
@@ -54,7 +56,7 @@ class Auth_Controller extends Base_Controller
             $user = new User;
             
             $user->email    = $input['email'];
-            $user->password = Hash::make($input['email']);
+            $user->password = Hash::make($input['password']);
             
             $user->save();
             
@@ -78,9 +80,35 @@ class Auth_Controller extends Base_Controller
     {
         sleep(2);
         
+        $input = Input::all();
+        
+        $validation = Validator::make($input, $this->_rules, $this->_messages);
+        
+        $success = false;
+        $result  = NULL; 
+        
+        if ($validation->fails())
+        {
+            $result = $validation->errors;
+        }
+        else {
+            
+            $credentials = array('username' => $input['email'], 'password' => $input['password']);
+
+            if (Auth::attempt($credentials))
+            {
+                 $success = true;
+                 $result  = 'merchant-authorization-ok';
+            }
+            else
+            {
+                $result = 'merchant-authorization-wrong';
+            }
+        }
+        
         return json_encode(array(
-            'success' => true,
-            'result'  => 'merchant-authorization-ok'
+            'success' => $success,
+            'result'  => $result
         ));
     }
     

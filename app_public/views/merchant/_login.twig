@@ -10,6 +10,10 @@
 
   <table><tr>
     <td>
+      <div id="wrongAuthorization" class="alert alert-error fade" style="position: absolute; margin: -37px 0 0 176px;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          Неверный логин или пароль
+      </div>
       <form id="merchant-authorization" class="bs-docs-example form-horizontal" action="/auth/login" method="POST">
         <div class="control-group">
           <div class="controls">
@@ -19,13 +23,15 @@
         <div class="control-group">
           <label class="control-label" for="logEmail">Email</label>
           <div class="controls">
-            <input type="text" id="logEmail" name="logEmail" placeholder="Email">
+            <input type="text" id="logEmail" name="email" placeholder="Email">
+            <span class="help-inline"></span>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="logPassword">Пароль</label>
           <div class="controls">
-            <input type="password" id="logPassword" name="logPassword" placeholder="Пароль">
+            <input type="password" id="logPassword" name="password" placeholder="Пароль">
+            <span class="help-inline"></span>
           </div>
         </div>
         <div class="control-group">
@@ -126,6 +132,9 @@ $(document).ready(function(){
                         break;
                 }
                 
+            }
+            else if (data.success === false && data.result == 'merchant-authorization-wrong') {
+                $('#wrongAuthorization').addClass('in');
             }
             else {
                 switch (data.result.format) {
