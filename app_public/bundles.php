@@ -54,6 +54,15 @@ return array(
                 'Junior\\Serverside\\Request' => '(:bundle)/Serverside/Request.php'
             )
         )
+    ),
+    
+    'api' => array(
+        'location' => 'api',
+        'autoloads' => array(
+            'map' => array(
+                'Api\\Merchants' => '(:bundle)/Merchants.php'
+            )
+        )
     )
 
 );

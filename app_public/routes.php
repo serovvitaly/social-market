@@ -67,11 +67,7 @@ Route::controller( Controller::detect() );
 */
 Route::post('rpc', function(){
     
-    class mytestclass{
-        public function hello($page = 5){}
-    }
-    
-    $server = new Junior\Server(new mytestclass);
+    $server = new Junior\Server(new Api\Merchants);
     
     $server->process();
     

@@ -98,7 +98,7 @@ $(document).ready(function(){
         beforeSubmit: function(formData, jqForm, options){
             
             var form_id = $(jqForm).attr('id');
-            var if_errors = true;
+            var no_errors = true;
             
             $('#'+form_id+' button.btn').button('loading');
             $('#'+form_id+' .control-group').removeClass('error');
@@ -108,13 +108,13 @@ $(document).ready(function(){
             for (var i=0; i < formData.length; i++) {
                 if (!formData[i].value) { 
                     $('#'+form_id+' input[name="'+formData[i].name+'"]').parents('.control-group').addClass('error'); 
-                    if_errors = false; 
+                    no_errors = false; 
                 }
             }
             
-            if (!if_errors) $('#'+form_id+' button.btn').button('reset'); 
+            if (!no_errors) $('#'+form_id+' button.btn').button('reset'); 
             
-            return if_errors;
+            return no_errors;
         },
         success: function(data, p1, p2, jqForm){
             var form_id = $(jqForm).attr('id');

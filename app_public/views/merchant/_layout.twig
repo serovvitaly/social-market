@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="/css/style.css">
   
   <script src="/bundles/jquery/jquery.min.js"></script>
+  
   <script src="/bundles/jquery/jquery.form.js"></script>
   <script src="/bundles/jquery/jquery.jsonrpc.js"></script>
+  
+  <script src="/bundles/jquery-tmpl/jquery.tmpl.js"></script>
   
   <script>
   $(document).ready(function(){
       $.jsonRPC.setup({
           endPoint: '/rpc',
-          namespace: 'merchant'
+          //namespace: 'merchants'
       });
   });
   
@@ -23,8 +26,8 @@
       api: function(call, params, success, failure, error){
           $.jsonRPC.request(call, {
               params: params,
-              success: success,
-              error: error ? error : function(response){console.log(response)}
+              success: success ? success : function(response){console.log('SUCCESS:');console.log(response)},
+              error: error ? error : function(response){console.log('ERROR:');console.log(response)}
           });
       }
   }
