@@ -119,6 +119,7 @@ class Auth_Controller extends Base_Controller
     */
     public function action_logout()
     {
-        // 
+        Auth::logout();
+        return Redirect::to('/auth'); 
     }
 }
