@@ -39,6 +39,14 @@ class Merchant_Controller extends Private_Controller
     }
     
     
+    public function action_products_list()
+    {
+        $this->_data['categories'] = array();
+        
+        return $this->_layout('merchant.products.list');
+    }
+    
+    
     public function action_application_add()
     {
         sleep(2);

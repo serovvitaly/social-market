@@ -8,4 +8,10 @@ class User extends Eloquent
         return $this->has_many('Application');
     }
     
+    
+    public function products()
+    {
+        return $this->has_many('Product');
+    }
+    
 }

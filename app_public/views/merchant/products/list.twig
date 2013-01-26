@@ -1,0 +1,92 @@
+{% extends "merchant/_layout.twig" %}
+
+{% block title %}Админка{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="span2">
+    <h3>КАТЕГОРИИ</h3>
+    
+    <ul class="nav nav-tabs nav-stacked" style="margin-top: 20px;" id="ul-app-list">
+    {% for cat in categories %}
+      <li><a href="#{{ cat.id }}">{{ cat.name }}</a></li>
+    {% endfor %}      
+    </ul>
+  </div>
+  <div class="span6" style="padding-top: 40px;">
+    <div class="product-navigation-top">
+    
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <button class="btn dropdown-toggle" data-toggle="dropdown">Выделенные <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Удалить</a></li>
+              <li><a href="#">Снять с продажы</a></li>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <button class="btn">Добавить товар</button>
+            <button class="btn">Загрузить YML</button>
+          </div>
+        </div>
+    
+    </div>
+    <div id="ajax-content-main"></div>
+  </div>
+  <div class="span4">
+    <div class="product-full" id="ajax-content-product-full">
+      <div class="wrapper">
+        <div class="image-box"></div>
+        <div class="title-box">Заголовок</div>
+        <div class="description-box">текст</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var product_page = 1;
+
+$(document).ready(function(){    
+    productsLoad();
+});
+
+function productsLoad(page){
+    if (!page) page = product_page;
+    
+    som.api('products_load', [page], function(data){
+        
+        var conteiner = $('#ajax-content-main');
+        
+        $.each(data.result, function(index, item){
+            //console.log(item);
+            var item_coment = $('#productItemTemplate').tmpl(item);
+            conteiner.append( item_coment );
+        })
+        
+    });
+    
+}
+
+
+function productRenderFullData(el){
+    var content = $('#ajax-content-product-full');
+    
+    $('#ajax-content-main .ptoduct-item').removeClass('active');
+    $(el).addClass('active');
+    
+    content.find('.image-box').html( '<img src="' + $(el).find('img.media-object').attr('src') + '" alt="">' );
+    content.find('.title-box').html( $(el).find('.media-heading').html() );
+    content.find('.description-box').html( $(el).find('.description').val() );
+}
+
+</script>
+
+
+<!-- Шаблон формы добавления приложения -->
+<script id="productItemTemplate" type="text/x-jquery-tmpl">
+{% include 'merchant/products/_tpl_productItemTemplate.twig' %}
+</script>
+
+{% endblock %}

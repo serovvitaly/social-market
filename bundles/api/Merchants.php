@@ -19,4 +19,27 @@ class Merchants
         );
     }
     
+    
+    public function products_load($page = 1)
+    {
+        $output = array();
+        
+        $products = \Laravel\Auth::user()->products()->take(20)->get();
+        
+        if (count($products) > 0) {
+            foreach ($products AS $product) {
+                $output[] = array(
+                    'id'          => $product->id,
+                    'name'        => $product->name,
+                    'price'       => number_format($product->base_price, 2),
+                    'vendor'      => $product->vendor,
+                    'picture'     => $product->picture,
+                    'description' => $product->description,
+                );
+            }
+        }
+        
+        return $output;
+    }
+    
 }
