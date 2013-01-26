@@ -9,6 +9,27 @@
   
   <script src="/bundles/jquery/jquery.min.js"></script>
   <script src="/bundles/jquery/jquery.form.js"></script>
+  <script src="/bundles/jquery/jquery.jsonrpc.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+      $.jsonRPC.setup({
+          endPoint: '/rpc',
+          namespace: 'merchant'
+      });
+  });
+  
+  var som = {
+      api: function(call, params, success, failure, error){
+          $.jsonRPC.request(call, {
+              params: params,
+              success: success,
+              error: error ? error : function(response){console.log(response)}
+          });
+      }
+  }
+  
+  </script>
   
 </head>
 <body>
@@ -16,7 +37,7 @@
   {% include 'merchant/_topmenu.twig' %}
   {% endblock %}
 
-  <div class="container" style="margin-top: 50px;">
+  <div class="container" style="margin-top: 70px;">
     {% include 'merchant/_top_submenu.twig' %}
     {% block content %}{% endblock %}
   </div> 

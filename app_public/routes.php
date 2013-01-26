@@ -31,7 +31,7 @@
 |		});
 |
 */
-
+   
 /**
 * Блокируем доступ к роутам основного приватного контроллера
 */
@@ -60,6 +60,23 @@ Route::get('merchant/(:all?)', array('before' => 'filter', function($all = NULL)
 * Универсальный роутер
 */
 Route::controller( Controller::detect() );
+ 
+
+/**
+* Перехватывает запросы клиента JSON-RPC и передаем их серверу 
+*/
+Route::post('rpc', function(){
+    
+    class mytestclass{
+        public function hello($page = 5){}
+    }
+    
+    $server = new Junior\Server(new mytestclass);
+    
+    $server->process();
+    
+    return;
+});
    
 
 /*

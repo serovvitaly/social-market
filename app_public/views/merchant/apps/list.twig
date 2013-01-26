@@ -3,5 +3,25 @@
 {% block title %}Админка{% endblock %}
 
 {% block content %}
-LIST
+<div class="row">
+  <div class="span3">
+    <button class="btn" onclick="createApplication();" style="width: 100%;"><i class="icon-plus"></i> Добавить приложение</button>
+    
+    <ul class="nav nav-tabs nav-stacked" style="margin-top: 20px;">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Messages</a></li>
+    </ul>
+  </div>
+  <div class="span9" id="ajax-content-main"></div>
+</div>
+
+<script>
+function createApplication(){
+    som.api('hello', {
+        page: 1
+    });
+}
+</script>
+
 {% endblock %}
