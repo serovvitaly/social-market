@@ -50,8 +50,9 @@ Route::filter('filter', function(){
     }
 });
 
-Route::get('merchant/(:all?)', array('before' => 'filter', function(){
-    //
+Route::get('merchant/(:all?)', array('before' => 'filter', function($all = NULL){
+    $all = $all ? $all : 'index';
+    return Controller::call('merchant@' . $all);
 }));
 
 
@@ -59,7 +60,7 @@ Route::get('merchant/(:all?)', array('before' => 'filter', function(){
 * Универсальный роутер
 */
 Route::controller( Controller::detect() );
-
+   
 
 /*
 |--------------------------------------------------------------------------
