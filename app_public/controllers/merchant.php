@@ -29,21 +29,21 @@ class Merchant_Controller extends Private_Controller
  
     public function action_index()
     {
-        return $this->_layout('merchant.index');
+        return $this->_layout('aquincum.index.index');
     }
     
     
-    public function action_apps_list()
+    public function action_apps()
     {
-        return $this->_layout('merchant.apps.list');        
+        return $this->_layout('aquincum.apps.index');        
     }
     
     
-    public function action_products_list()
+    public function action_products()
     {
         $this->_data['categories'] = array();
         
-        return $this->_layout('merchant.products.list');
+        return $this->_layout('aquincum.products.index');
     }
     
     

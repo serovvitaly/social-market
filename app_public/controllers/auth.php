@@ -98,11 +98,11 @@ class Auth_Controller extends Base_Controller
             if (Auth::attempt($credentials))
             {
                  $success = true;
-                 $result  = 'merchant-authorization-ok';
+                 $result  = 'login-ok';
             }
             else
             {
-                $result = 'merchant-authorization-wrong';
+                $result = 'login-wrong';
             }
         }
         

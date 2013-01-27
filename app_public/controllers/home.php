@@ -32,6 +32,8 @@ class Home_Controller extends Base_Controller {
 
 	public function action_index()
 	{
+        return 'HOME PAGE';
+        
 		return View::make('aquincum.index');
 	}
 
