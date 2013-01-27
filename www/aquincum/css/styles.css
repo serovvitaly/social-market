@@ -1615,7 +1615,7 @@ textarea { height: auto; }
 .formError .formErrorArrow .line2 { width: 3px; border: none; background: #ddd; }
 .formError .formErrorArrow .line1 { width: 1px; border: none; background: #ddd; }
 .checker input, .radio input, .selector select { cursor: pointer; }
-input.error { border-color: #DDBEBE!important; }
+input.error { border-color: #E49595!important; }
 
 
 /* ===== Form styling  ===== */

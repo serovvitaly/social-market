@@ -26,7 +26,7 @@ class Auth_Controller extends Base_Controller
     {
         //
         
-        return View::make('merchant/_login');
+        return View::make('aquincum/login');
     }
     
     
