@@ -17,11 +17,36 @@ class Merchant_Controller extends Private_Controller
     );
     
     
+    protected $_pages = array(
+        'index' => array(
+            'title' => 'Главная',
+            'href'  => '/',
+            'icon'  => 'dashboard.png'
+        ),
+        'apps' => array(
+            'title' => 'Приложения',
+            'href'  => '/apps',
+            'icon'  => 'tables.png'
+        ),
+        'products' => array(
+            'title' => 'Товары',
+            'href'  => '/products',
+            'icon'  => 'forms.png'
+        )
+    );
+    
+    
     protected function _layout($template)
     {
         $this->_data['user'] = Auth::user();
         
         $this->_data['applications'] = Auth::user()->apps()->get();
+        
+        $this->_data['current_action'] = $this->controller_action;
+        
+        $this->_data['pages_collection'] = $this->_pages;
+        
+        echo $this->controller_action;
         
         return View::make($template, $this->_data);
     }
