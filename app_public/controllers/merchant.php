@@ -58,16 +58,18 @@ class Merchant_Controller extends Private_Controller
         $this->_action     = Request::route()->controller_action;
         
         
-        $this->_data['user'] = Auth::user();
+        $this->_data['user']             = Auth::user();
         
-        $this->_data['applications'] = Auth::user()->apps()->get();
+        $this->_data['applications']     = Auth::user()->apps()->get();
         
-        $this->_data['current_page'] = NULL;
+        $this->_data['current_page']     = NULL;
+        
+        $this->_data['current_page_key'] = $this->_controller;
         
         if (isset($this->_pages[$this->_controller])) {
             $this->_pages[$this->_controller]['is_active'] = true;
             
-            $this->_data['current_page'] = $this->_pages[$this->_controller];
+            $this->_data['current_page']     = $this->_pages[$this->_controller];
         }
         
         $this->_data['pages_collection'] = $this->_pages;
