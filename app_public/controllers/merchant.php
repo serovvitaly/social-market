@@ -36,40 +36,28 @@ class Merchant_Controller extends Private_Controller
     );
     
     
-    protected function _layout($template)
+    public function before()
     {
         $this->_data['user'] = Auth::user();
         
         $this->_data['applications'] = Auth::user()->apps()->get();
         
-        $this->_data['current_action'] = $this->controller_action;
+        $this->_data['current_action'] = Request::route()->controller_action;
         
         $this->_data['pages_collection'] = $this->_pages;
-        
-        echo $this->controller_action;
-        
-        return View::make($template, $this->_data);
     }
     
- 
-    public function action_index()
+    
+    public function after($response)
     {
-        return $this->_layout('aquincum.index.index');
-    }
-    
-    
-    public function action_apps()
-    {
-        return $this->_layout('aquincum.apps.index');        
-    }
-    
-    
-    public function action_products()
-    {
-        $this->_data['categories'] = array();
+        $controller = ltrim(Request::route()->controller, 'merchant/');
         
-        return $this->_layout('aquincum.products.index');
-    }
+        $action = Request::route()->controller_action;
+        
+        $template = 'aquincum.' . $controller . '.' . $action;
+        
+        $response->content = View::make($template, $this->_data);
+    }    
     
     
     public function action_application_add()

@@ -1966,7 +1966,7 @@ transition:0.8s;
 .loginPic span { display: block; color: #5f5f5f; font-size: 14px; margin-top: 10px; font-weight: bold; text-shadow: 0 1px 1px #ffffff; }
 .loginWrapper form { display: block; margin: 0 auto; width: 236px; }
 .loginWrapper a { display: inline-block; }
-.loginWrapper input[type=text], .loginWrapper input[type=password] { font-size: 11px; color: #858585; box-shadow: 0 0 0px 2px #ebebeb; -webkit-box-shadow: 0 0 0px 2px #ebebeb; -moz-box-shadow: 0 0 0px 2px #ebebeb; padding: 7px 27px 7px 9px; border: 1px solid #d7d7d7; width: 198px; display: inline-block; margin-top: 15px; }
+.loginWrapper input[type=text], .loginWrapper input[type=password] { font-size: 11px; color: #686868; box-shadow: 0 0 0px 2px #ebebeb; -webkit-box-shadow: 0 0 0px 2px #ebebeb; -moz-box-shadow: 0 0 0px 2px #ebebeb; padding: 7px 27px 7px 9px; border: 1px solid #d7d7d7; width: 198px; display: inline-block; margin-top: 15px; }
 .loginUsername { background: #fbfbfb url(../images/icons/loginUsername.png) no-repeat 213px 7px; }
 .loginPassword { background: #fbfbfb url(../images/icons/loginLock.png) no-repeat 214px 7px; }
 .loginEmail { background: #fbfbfb url(../images/icons/loginEmail.png) no-repeat 213px 7px; }

@@ -50,9 +50,14 @@ Route::filter('filter', function(){
     }
 });
 
-Route::get('merchant/(:all?)', array('before' => 'filter', function($all = NULL){
-    $all = $all ? $all : 'index';
-    return Controller::call('merchant@' . $all);
+Route::get('merchant/(:any?)/(:any?)/(:all?)', array('before' => 'filter', function($controller = 'index', $action = 'index', $other = NULL){
+    //$all = $all ? $all : 'index';
+    
+    if ($other) {
+        return Redirect::to('/merchant');
+    }
+    
+    return Controller::call("merchant/{$controller}@{$action}");
 }));
 
 
