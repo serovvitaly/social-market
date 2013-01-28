@@ -17,6 +17,11 @@ class Merchant_Controller extends Private_Controller
     );
     
     
+    protected $_controller = NULL;
+    
+    protected $_action     = NULL;
+    
+    
     protected $_pages = array(
         'index' => array(
             'title' => 'Главная',
@@ -28,33 +33,50 @@ class Merchant_Controller extends Private_Controller
             'href'  => '/apps',
             'icon'  => 'tables.png'
         ),
+        'shops' => array(
+            'title' => 'Магазины',
+            'href'  => '/products',
+            'icon'  => 'forms.png'
+        ),
         'products' => array(
             'title' => 'Товары',
             'href'  => '/products',
             'icon'  => 'forms.png'
+        ),
+        'buyers' => array(
+            'title' => 'Покупатели',
+            'href'  => '/products',
+            'icon'  => 'ui.png'
         )
     );
     
     
     public function before()
-    {
+    {        
+        $this->_controller = substr(Request::route()->controller, 9);
+        
+        $this->_action     = Request::route()->controller_action;
+        
+        
         $this->_data['user'] = Auth::user();
         
         $this->_data['applications'] = Auth::user()->apps()->get();
         
-        $this->_data['current_action'] = Request::route()->controller_action;
+        $this->_data['current_page'] = NULL;
+        
+        if (isset($this->_pages[$this->_controller])) {
+            $this->_pages[$this->_controller]['is_active'] = true;
+            
+            $this->_data['current_page'] = $this->_pages[$this->_controller];
+        }
         
         $this->_data['pages_collection'] = $this->_pages;
     }
     
     
     public function after($response)
-    {
-        $controller = ltrim(Request::route()->controller, 'merchant/');
-        
-        $action = Request::route()->controller_action;
-        
-        $template = 'aquincum.' . $controller . '.' . $action;
+    {        
+        $template = 'aquincum.' . $this->_controller . '.' . $this->_action;
         
         $response->content = View::make($template, $this->_data);
     }    
