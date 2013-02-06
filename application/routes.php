@@ -32,14 +32,6 @@
 |
 */
 
-Route::get('private/(:all?)', function()
-{
-    return Response::error('404');
-});
-
-
-Route::controller( Controller::detect() );
-
 Route::get('/', function()
 {
 	return View::make('home.index');

@@ -38,9 +38,29 @@ return array(
 	'docs' => array('handles' => 'docs'),
     
     'twigview' => array(
-        'location' => 'twigview', 'autoloads' => array(
+        'location' => 'twigview',
+        'autoloads' => array(
             'map' => array(
                 'TwigView\\View' => '(:bundle)/view.php',
+            )
+        )
+    ),
+    
+    'junior' => array(
+        'location' => 'junior',
+        'autoloads' => array(
+            'map' => array(
+                'Junior\\Server' => '(:bundle)/Server.php',
+                'Junior\\Serverside\\Request' => '(:bundle)/Serverside/Request.php'
+            )
+        )
+    ),
+    
+    'api' => array(
+        'location' => 'api',
+        'autoloads' => array(
+            'map' => array(
+                'Api\\Merchants' => '(:bundle)/Merchants.php'
             )
         )
     )
