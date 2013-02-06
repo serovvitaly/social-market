@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'index' => 'index.php',
+	'index' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -192,7 +192,8 @@ return array(
 		'Task'       	=> 'Laravel\\CLI\\Tasks\\Task',
 		'URI'        	=> 'Laravel\\URI',
 		'Validator'  	=> 'Laravel\\Validator',
-		'View'       	=> 'Laravel\\View',
+		//'View'       	=> 'Laravel\\View',
+        'View'          => 'TwigView\\View',
 	),
 
 );
