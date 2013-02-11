@@ -27,7 +27,7 @@ RewriteRule \.(jpg|jpeg|png|gif|ico)$ - [L]
 # For Friendly URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule left_stat.php?id=([0-9]*) blog/$1 [L]
+#RewriteRule left_stat.php?id=([0-9]*) blog/$1 [L]
 RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 
 # Reduce server overhead by enabling output compression if supported.
