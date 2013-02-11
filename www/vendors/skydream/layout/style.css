@@ -216,8 +216,8 @@ nav.main_menu > select {display:none;}
 .left_sidebar .main_content {width:680px; float:right;}
 .left_sidebar .sidebar {width:220px; float:left;}
 
-.main_content p {font-family:'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size:11px; color:#797979; line-height:17px;}
-.main_content p a {font-family:'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size:11px; color:#797979;}
+.main_content p {font-family: Arial, Helvetica, sans-serif; font-size:12px; color:#797979; line-height:20px;}
+.main_content p a {font-family: Arial, Helvetica, sans-serif; font-size:12px; color:#797979;}
 
 .heading_w_icon {height:28px; padding-left:24px; padding-bottom:12px; background:url(images/icon_headings_1.png) no-repeat; font-size:16px; line-height:26px;}
 
