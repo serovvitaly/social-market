@@ -32,10 +32,11 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
+Route::get('left_stat.php', 'blog@ctg');
+
+Route::get('left_stat_det.php', 'blog@post');
+
+Route::controller(Controller::detect());
 
 /*
 |--------------------------------------------------------------------------

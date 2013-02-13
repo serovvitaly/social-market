@@ -22,7 +22,7 @@ var settings_block = '<div class="color_picker_wrapper"><div id="color_picker" c
 			<a href="#" id="reset">Reset styles</a><a href="#" id="apply">Apply</a>\
 		</div>\
 		\
-        <a href="#" id="picker_close"><img src="settings/images/trans.gif" alt="" /></a>\
+        <a href="#" id="picker_close"><img src="/vendors/skydream/settings/images/trans.gif" alt="" /></a>\
     </div></div>';
 $(function(){$('body').prepend(settings_block);});
 
@@ -81,7 +81,7 @@ function init_links() {
 		var info = the_settings[name];
 		var html = '';
 		for(i = 0; i < info.length; i++) {
-			html += '<a href="' + name + '_' + info[i].toLowerCase() + '"><img src="settings/images/' + name + '_' + info[i].toLowerCase() + '.jpg" alt=""></a>';
+			html += '<a href="' + name + '_' + info[i].toLowerCase() + '"><img src="/vendors/skydream/settings/images/' + name + '_' + info[i].toLowerCase() + '.jpg" alt=""></a>';
 		}
 		
 		$(this).append(html);

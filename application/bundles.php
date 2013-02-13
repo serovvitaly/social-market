@@ -37,4 +37,12 @@ return array(
 
 	'docs' => array('handles' => 'docs'),
 
+    'twigview' => array(
+        'location' => 'TwigView', 
+        'autoloads' => array(
+            'map' => array(
+                'TwigView\\View' => '(:bundle)/view.php',
+            )
+        )
+    ),
 );

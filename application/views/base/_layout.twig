@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{% include 'base/_common/head.twig' %}
+</head>
+
+<body class="theme_layout_boxed theme_light theme_footer_normal theme_layout_bg_type_2">
+    <div class="wrapper sticky_footer">
+        <!-- HEADER BEGIN -->
+        <header>                 
+            <div id="header">
+                <section class="section_top">
+                    <div class="inner">
+                        <div id="logo"><a href="/" style="font-family: georgia; font-style: italic; color:#585858; font-size: 14px;">
+                          <strong style="font-size: 22px; color: #000000;">Как начать свое дело</strong><br/>
+                          Бизнеc-справочник для начинающего предпринимателя
+                        </a></div>
+                        
+                        <nav class="main_menu">
+                            <ul>
+                                <li><a href="/">Главная<span class="subtext">интересно</span></a></li>
+                            <!--    <li class="current_page_item"><a href="/blog">Блог<span class="subtext">чтиво</span></a></li>  -->
+                            </ul>
+                        </nav>
+                        
+                        <div class="clearboth"></div>
+                    </div>
+                </section>
+                
+                <section class="section_title">
+                    <div class="inner">
+                        <div class="block_title"><h1>{{ blog_title }}</h1></div>
+                        
+                        <div class="block_breadcrumbs">
+                            <p><a href="/">Главная</a> / <span>{{ blog_title }}</span></p>
+                        </div>
+                        
+                        <div class="clearboth"></div>
+                    </div>
+                </section>
+                <div class="line_3"></div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+        
+        {% block content %}
+        {% endblock content %}
+        
+        <!-- FOOTER BEGIN -->
+        <footer>
+            <div id="footer">
+                <section class="section_top">
+                    <div class="inner">
+                        <div class="block_to_top">
+                            <a href="#">BACK TO TOP</a>
+                        </div>
+                        
+                      
+                    </div>
+                </section>
+                
+                <section class="section_bottom">
+                    <div class="inner">
+                        <div class="block_bottom_menu">
+                            <ul>
+                                <li><a href="">Sitemap</a></li>
+                                <li><a href="">Terms of use</a></li>
+                                <li><a href="">Privacy policy</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="block_copyrights"><p>&copy; 2012 MASTERBIZNESA.RU - Все права защищены.</p></div>
+                        
+                        <div class="clearboth"></div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+    </div>
+</body>
+
+</html>

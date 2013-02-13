@@ -1,0 +1,63 @@
+{% extends 'base/_layout.twig' %}
+
+{% block content %}
+
+<!-- CONTENT BEGIN -->
+<div id="content" class="right_sidebar">
+    <div class="inner">
+        <div class="general_content">
+            <div class="main_content">
+                <div class="separator" style="height:37px;"></div>
+                
+                <div class="block_blog_type_4">
+                
+                  {% for post in posts %}
+                    <article>
+                        <div class="info">
+                            <a href="#" class="date"><span>{{ post.created_month }} {{ post.created_day }}</span>{{ post.created_year }}</a>
+                            <div class="clearboth"></div>
+                        </div>
+                        
+                        <div class="f_pic"><a href="{{ post.alias }}"><img height="120" src="{{ post.image }}" alt=""></a></div>
+                        
+                        <div class="content">
+                            <h4><a href="{{ post.alias }}">{{ post.name }}</a></h4>
+                            
+                            <p>{{ post.introtext }} [...]</p>
+                            <a href="{{ post.alias }}" class="general_read_more">Читать дальше</a>
+                        </div>
+                        
+                        <div class="clearboth"></div>
+                    </article>
+                    
+                    <div class="line_2" style="margin:25px 0px 37px;"></div>
+                  {% endfor %}
+                  
+                </div>
+                
+                <div class="clearboth"></div>
+                
+            </div>
+            
+            <div class="sidebar">               
+                
+                <div class="separator" style="height:38px;"></div>
+                
+                <div class="block_categories">
+                    <h6>Категории</h6>
+                    <ul class="list_5">
+                    {% for ctg in ctgs %}
+                        <li><a href="{{ ctg.alias }}">{{ ctg.name }}</a> ({{ ctg.posts_count }})</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+<!-- CONTENT END -->
+
+{% endblock content %}

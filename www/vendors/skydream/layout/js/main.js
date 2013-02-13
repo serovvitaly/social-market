@@ -1,7 +1,7 @@
 /* settings block start */
-document.write('<link rel="stylesheet" href="settings/style.css" type="text/css">');
-document.write('<script type="text/javascript" src="settings/js/jquery.cookies.min.js"></script>');
-document.write('<script type="text/javascript" src="settings/js/main.js"></script>');
+//document.write('<link rel="stylesheet" href="/vendors/skydream/settings/style.css" type="text/css">');
+//document.write('<script type="text/javascript" src="/vendors/skydream/settings/js/jquery.cookies.min.js"></script>');
+//document.write('<script type="text/javascript" src="/vendors/skydream/settings/js/main.js"></script>');
 /* settings block end */
 
 
